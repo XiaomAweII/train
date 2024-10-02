@@ -1,4 +1,4 @@
-package com.xiaoweii.train.aspect;
+package com.xiaoweii.train.common.aspect;
 
 import cn.hutool.core.util.RandomUtil;
 import com.alibaba.fastjson.JSONObject;
@@ -20,8 +20,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.util.Random;
 
 
 //这个类是切面类,以后用到直接使用即可

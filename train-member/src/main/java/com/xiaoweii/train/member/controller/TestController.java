@@ -1,4 +1,4 @@
-package com.xiaoweii.train.controller;
+package com.xiaoweii.train.member.controller;
 
 
 import org.springframework.web.bind.annotation.GetMapping;
