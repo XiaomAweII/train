@@ -1,0 +1,5 @@
+# 快捷输入gtr
+GET http://localhost:8081/member/hello
+Accept: application/json
+
+###

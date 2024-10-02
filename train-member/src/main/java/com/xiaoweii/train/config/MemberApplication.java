@@ -20,6 +20,6 @@ public class MemberApplication {
         这里也可以打印欢迎语句,口号等, 或者项目常用的地址, 比如接口文档,项目文档, 数据库文档等
         项目的log
          */
-        LOG.info("测试地址: \thttp://127.0.0.1:{}/hello", env.getProperty("server.port"));
+        LOG.info("测试地址: \thttp://127.0.0.1:{}{}/hello", env.getProperty("server.port"),env.getProperty("server.servlet.context-path"));
     }
 }
