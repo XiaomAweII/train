@@ -50,4 +50,21 @@ public class ControllerExceptionHandler {
         return commonResp;
     }
 
+    /**
+     * 业务异常统一处理
+     *
+     * @param e
+     * @return
+     */
+    @ExceptionHandler(value = BindException.class)
+    @ResponseBody
+    public CommonResp exceptionHandler(BindException e) throws Exception {
+        CommonResp commonResp = new CommonResp();
+        //自己debug找一下这个e到底是什么, 需要的异常信息是什么
+        LOG.error("校验异常: {}", e.getBindingResult().getAllErrors().get(0).getDefaultMessage());
+        commonResp.setSuccess(false);
+        commonResp.setMessage(e.getBindingResult().getAllErrors().get(0).getDefaultMessage());
+        return commonResp;
+    }
+
 }

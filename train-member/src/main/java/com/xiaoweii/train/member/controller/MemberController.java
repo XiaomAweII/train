@@ -4,6 +4,7 @@ package com.xiaoweii.train.member.controller;
 import com.xiaoweii.train.common.resp.CommonResp;
 import com.xiaoweii.train.member.req.MemberRegisterReq;
 import com.xiaoweii.train.member.service.MemberService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,12 +28,8 @@ public class MemberController {
     }
 
     @PostMapping("/register")
-    public CommonResp<Long> register(MemberRegisterReq req) {
+    public CommonResp<Long> register(@Valid MemberRegisterReq req) {//@Valid注解相当于一个开关, 加上之后, Validation才会生效
         long register = memberService.register(req);
-//        CommonResp<Long> commonResp = new CommonResp<>();
-//        commonResp.setContent(register);
-//        return commonResp;
-        //简写
         return new CommonResp<>(register);
     }
 }

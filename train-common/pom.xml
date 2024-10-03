@@ -60,5 +60,11 @@
             <artifactId>lombok</artifactId>
         </dependency>
 
+        <!--增加spring自带的校验框架Validation-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+
     </dependencies>
 </project>
