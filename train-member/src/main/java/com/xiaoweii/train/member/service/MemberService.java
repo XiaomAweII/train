@@ -1,6 +1,8 @@
 package com.xiaoweii.train.member.service;
 
 import cn.hutool.core.collection.CollUtil;
+import com.xiaoweii.train.common.exception.BusinessException;
+import com.xiaoweii.train.common.exception.BusinessExceptionEnum;
 import com.xiaoweii.train.member.domain.Member;
 import com.xiaoweii.train.member.domain.MemberExample;
 import com.xiaoweii.train.member.mapper.MemberMapper;
@@ -32,14 +34,8 @@ public class MemberService {
 
         //Hutool里的工具
         if (CollUtil.isNotEmpty(list)) {
-            /*
-            方式一:
-            带验证码的注册可以用这种方式, 有验证码, 说明手机号是本人用, 原来注册过的, 就不用再保存了, 直接把数据库返回.
-            这个接口做成既可以是注册, 也可以是登录
-             */
             //return list.get(0).getId();
-
-            throw new RuntimeException("手机号已注册");
+            throw new BusinessException(BusinessExceptionEnum.MEMBER_MOBILE_EXIST);
         }
 
         Member member = new Member();
