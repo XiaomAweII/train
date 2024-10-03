@@ -78,6 +78,7 @@ public class LogAspect {
         // 排除字段，敏感字段或太长的字段不显示：身份证、手机号、邮箱、密码等
         //p.s.不管你做的是什么项目, 养成习惯, 敏感字段不要打印在日志里, 且数据库应该加密保存, 保障客户信息安全
         //p.s.自己开发的系统自己也破解不了, 保障客户信息安全
+//        String[] excludeProperties = {"mobile"};//增添过滤手机号
         String[] excludeProperties = {};
         PropertyPreFilters filters = new PropertyPreFilters();
         PropertyPreFilters.MySimplePropertyPreFilter excludefilter = filters.addFilter();

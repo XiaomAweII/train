@@ -4,6 +4,7 @@ import cn.hutool.core.collection.CollUtil;
 import com.xiaoweii.train.member.domain.Member;
 import com.xiaoweii.train.member.domain.MemberExample;
 import com.xiaoweii.train.member.mapper.MemberMapper;
+import com.xiaoweii.train.member.req.MemberRegisterReq;
 import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,14 +17,15 @@ public class MemberService {
     @Resource
     private MemberMapper memberMapper;
 
-    public Long count() {
+    public long count() {
         return memberMapper.countByExample(null);
     }
 
     /*
         注册功能
      */
-    public long register(String mobile) {
+    public long register(MemberRegisterReq req) {
+        String mobile = req.getMobile();
         MemberExample memberExample = new MemberExample();
         memberExample.createCriteria().andMobileEqualTo(mobile);//createCriteria()相当于生成where条件
         List<Member> list = memberMapper.selectByExample(memberExample);

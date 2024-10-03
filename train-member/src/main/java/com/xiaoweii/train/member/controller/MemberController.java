@@ -1,8 +1,9 @@
 package com.xiaoweii.train.member.controller;
 
 
+import com.xiaoweii.train.common.resp.CommonResp;
+import com.xiaoweii.train.member.req.MemberRegisterReq;
 import com.xiaoweii.train.member.service.MemberService;
-import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,12 +19,20 @@ public class MemberController {
     private MemberService memberService;
 
     @GetMapping("/count")
-    public long hello() {
-        return memberService.count();
+    public CommonResp<Long> count() {
+        long count = memberService.count();
+        CommonResp<Long> commonResp = new CommonResp<>();
+        commonResp.setContent(count);
+        return commonResp;
     }
 
     @PostMapping("/register")
-    public long register(String mobile) {
-        return memberService.register(mobile);
+    public CommonResp<Long> register(MemberRegisterReq req) {
+        long register = memberService.register(req);
+//        CommonResp<Long> commonResp = new CommonResp<>();
+//        commonResp.setContent(register);
+//        return commonResp;
+        //简写
+        return new CommonResp<>(register);
     }
 }
