@@ -25,7 +25,8 @@
 		<module>train-member</module>
 		<module>train-common</module>
 		<module>train-gateway</module>
-	</modules>
+        <module>train-generator</module>
+    </modules>
 	<scm>
 		<connection/>
 		<developerConnection/>
@@ -72,7 +73,7 @@
 			<dependency>
 				<groupId>org.mybatis.spring.boot</groupId>
 				<artifactId>mybatis-spring-boot-starter</artifactId>
-				<version>2.3.1</version>
+				<version>3.0.3</version>
 			</dependency>
 
 			<!--集成mysql连接-->

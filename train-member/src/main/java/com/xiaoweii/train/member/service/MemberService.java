@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class MemberService {
     // @Autowired和@Resource都可以, 都可以将接口注入进来
-    @Autowired
+    @Resource
     private MemberMapper memberMapper;
 
-    public int count() {
-        return memberMapper.count();
+    public Long count() {
+        return memberMapper.countByExample(null);
     }
 }

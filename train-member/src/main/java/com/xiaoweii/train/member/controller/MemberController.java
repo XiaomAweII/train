@@ -17,7 +17,7 @@ public class MemberController {
     private MemberService memberService;
 
     @GetMapping("/count")
-    public int hello(){
+    public long hello(){
         return memberService.count();
     }
 }
