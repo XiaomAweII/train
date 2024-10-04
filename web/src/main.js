@@ -34,3 +34,9 @@ axios.interceptors.response.use(function (response) {
     console.log('返回错误：', error);
     return Promise.reject(error);
 });
+
+//设置统一axios
+axios.defaults.baseURL = process.env.VUE_APP_SERVER;
+//打印日志
+console.log('环境：', process.env.NODE_ENV);
+console.log('服务端：', process.env.VUE_APP_SERVER);
