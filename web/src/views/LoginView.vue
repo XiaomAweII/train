@@ -43,8 +43,8 @@
 import {defineComponent, reactive} from 'vue';
 import axios from 'axios';
 import {notification} from 'ant-design-vue';
-// import {useRouter, useRoute} from 'vue-router'; 前者管理全局的页面(多个之间交互),后者获取当前路由
 import {useRouter} from 'vue-router';
+import store from "@/store";
 
 export default defineComponent({
   name: "LoginView",
@@ -75,8 +75,9 @@ export default defineComponent({
         let data = response.data;
         if (data.success) {
           notification.success({description: '登录成功！'});
-          // 登录成功, 调到控制台主页
+          // 登录成功, 调到控台主页
           router.push('/');
+          store.commit("setMember", data.content);
         } else {
           notification.error({description: data.message});
         }
