@@ -1,18 +1,6 @@
 <template>
   <a-layout id="components-layout-demo-top-side">
-    <a-layout-header class="header">
-      <div class="logo" />
-      <a-menu
-          v-model:selectedKeys="selectedKeys1"
-          theme="dark"
-          mode="horizontal"
-          :style="{ lineHeight: '64px' }"
-      >
-        <a-menu-item key="1">nav 1</a-menu-item>
-        <a-menu-item key="2">nav 2</a-menu-item>
-        <a-menu-item key="3">nav 3</a-menu-item>
-      </a-menu>
-    </a-layout-header>
+    <HeaderComponent></HeaderComponent>
     <a-layout-content style="padding: 0 50px">
       <a-breadcrumb style="margin: 16px 0">
         <a-breadcrumb-item>Home</a-breadcrumb-item>
@@ -30,7 +18,7 @@
             <a-sub-menu key="sub1">
               <template #title>
                 <span>
-                  <user-outlined />
+                  <user-outlined/>
                   subnav 1
                 </span>
               </template>
@@ -42,7 +30,7 @@
             <a-sub-menu key="sub2">
               <template #title>
                 <span>
-                  <laptop-outlined />
+                  <laptop-outlined/>
                   subnav 2
                 </span>
               </template>
@@ -54,7 +42,7 @@
             <a-sub-menu key="sub3">
               <template #title>
                 <span>
-                  <notification-outlined />
+                  <notification-outlined/>
                   subnav 3
                 </span>
               </template>
@@ -76,17 +64,20 @@
   </a-layout>
 </template>
 <script>
-import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons-vue';
-import { defineComponent, ref } from 'vue';
+import {UserOutlined, LaptopOutlined, NotificationOutlined} from '@ant-design/icons-vue';
+import {defineComponent, ref} from 'vue';
+import HeaderComponent from "@/components/HeaderComponent.vue";
+
 export default defineComponent({
   components: {
+    HeaderComponent,
     UserOutlined,
     LaptopOutlined,
     NotificationOutlined,
   },
   setup() {
     return {
-      selectedKeys1: ref(['2']),
+
       selectedKeys2: ref(['1']),
       openKeys: ref(['sub1']),
     };
