@@ -114,5 +114,18 @@ createApp(App).use(store).use(router).mount('#app')
 package.json还可以查看依赖, 后期如果想用什么组件, 可以直接在文件中添加依赖
 
 
+# Web模块集成Ant Design Vue
 
+Ant Design Vue 是阿里团队开源的基于Vue的UI组件, 文档链接: antdv.com
 
+UI组件有很多可选: 一种是选择基于CSS的Bootstrap, 适合各种前端搭建, 一种是选择基于Vue的UI组件, 只能用于Vue框架
+
+Element(由饿了么团队开源)在Vue2时是最热门框架, Vue3出来后, 没有第一时间跟着升级, 后来才出来基于Vue3的Element Plus
+
+安装`npm i --save ant-design-vue`,这里的i就是install,--save就会引入引来而不是只下载,老版本需要, 新版本不需要
+
+安装完后会在`package.json`当中发现导入了版本, 还有`package-lock.json`,会有一个`^3.2.15`这里的`^`意思是兼容小版本的升级,然后`package-lock.json`会帮我们锁定版本,避免组件库不兼容
+
+在main.js当中使用全局, css样式最新版的好像不需要引入了, 
+
+安装图标库`npm install --save @ant-design/icons-vue`
