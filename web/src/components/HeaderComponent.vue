@@ -2,9 +2,9 @@
   <a-layout-header class="header">
     <div class="logo"/>
     <div style="float: right;color: white;">
-      您好: {{member.mobile}} &nbsp;&nbsp;
+      您好: {{ member.mobile }} &nbsp;&nbsp;
       <!-- 使用router-link标签+to来跳转页面, 相当于a标签+href-->
-      <router-link to="/login">
+      <router-link to="/login" style="color: white">
         退出登录
       </router-link>
     </div>
