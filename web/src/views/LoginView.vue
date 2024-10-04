@@ -71,7 +71,7 @@ export default defineComponent({
         let data = response.data;
         if (data.success) {
           notification.success({description: '登录成功！'});
-          console.log("登录成功: ", data.content);
+          // console.log("登录成功: ", data.content);
         } else {
           notification.error({description: data.message});
         }

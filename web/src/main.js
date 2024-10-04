@@ -3,8 +3,8 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import Antd from 'ant-design-vue'
-// import 'ant-design-vue/dist/antd.css'//最新版的好像不需要导入了
 import * as Icons from '@ant-design/icons-vue'
+import axios from 'axios'
 
 const app = createApp(App)
 app.use(Antd).use(store).use(router).mount('#app')
@@ -14,3 +14,23 @@ const icons = Icons
 for (const i in icons) {
     app.component(i, icons[i]);
 }
+
+/**
+ * axios拦截器 axios.ininterceptors
+ */
+//拦截request
+axios.interceptors.request.use(function (config) {
+    console.log('请求参数：', config);
+    return config;
+}, error => {
+    //失败后拒绝
+    return Promise.reject(error);
+});
+//拦截response-返回结果
+axios.interceptors.response.use(function (response) {
+    console.log('返回结果：', response);
+    return response;
+}, error => {
+    console.log('返回错误：', error);
+    return Promise.reject(error);
+});
