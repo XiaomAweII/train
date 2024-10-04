@@ -43,10 +43,14 @@
 import {defineComponent, reactive} from 'vue';
 import axios from 'axios';
 import {notification} from 'ant-design-vue';
+// import {useRouter, useRoute} from 'vue-router'; 前者管理全局的页面(多个之间交互),后者获取当前路由
+import {useRouter} from 'vue-router';
 
 export default defineComponent({
   name: "LoginView",
   setup() {
+    const router = useRouter();
+
     const loginForm = reactive({
       mobile: '13000000000',
       code: '',
@@ -71,7 +75,8 @@ export default defineComponent({
         let data = response.data;
         if (data.success) {
           notification.success({description: '登录成功！'});
-          // console.log("登录成功: ", data.content);
+          // 登录成功, 调到控制台主页
+          router.push('/');
         } else {
           notification.error({description: data.message});
         }
