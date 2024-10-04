@@ -9,6 +9,7 @@ import cn.hutool.core.util.RandomUtil;
 import cn.hutool.jwt.JWTUtil;
 import com.xiaoweii.train.common.exception.BusinessException;
 import com.xiaoweii.train.common.exception.BusinessExceptionEnum;
+import com.xiaoweii.train.common.util.JwtUtil;
 import com.xiaoweii.train.common.util.SnowUtil;
 import com.xiaoweii.train.member.domain.Member;
 import com.xiaoweii.train.member.domain.MemberExample;
@@ -113,10 +114,8 @@ public class MemberService {
         }
 
         MemberLoginResp memberLoginResp = BeanUtil.copyProperties(memberDB, MemberLoginResp.class);
-        Map<String, Object> map = BeanUtil.beanToMap(memberLoginResp);//参数一:map
-        String key = "Train12306";//密钥key,每个项目都不一样
-        //使用hutool工具类生成token
-        String token = JWTUtil.createToken(map, key.getBytes());
+        //官方大写的JWTUtil
+        String token = JwtUtil.createToken(memberLoginResp.getId(), memberLoginResp.getMobile());
         memberLoginResp.setToken(token);
         return memberLoginResp;
     }
