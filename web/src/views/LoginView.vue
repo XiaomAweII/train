@@ -43,6 +43,7 @@
 
 <script>
 import {defineComponent, reactive} from 'vue';
+import axios from 'axios';
 
 export default defineComponent({
   name: "LoginView",
@@ -51,16 +52,27 @@ export default defineComponent({
       mobile: '13000000000',
       code: '',
     });
+
     const onFinish = values => {
       console.log('Success:', values);
     };
+
     const onFinishFailed = errorInfo => {
       console.log('Failed:', errorInfo);
+    };
+    const sendCode = () => {
+      //要发送get请求就.get,要发送post请求就.post,要发送delete请求就.delete
+      axios.post("http://localhost:8000/member/member/send-code", {
+        mobile: loginForm.mobile
+      }).then(res => {
+        console.log(res);
+      });
     };
     return {
       loginForm,
       onFinish,
       onFinishFailed,
+      sendCode,
     };
   },
 });
