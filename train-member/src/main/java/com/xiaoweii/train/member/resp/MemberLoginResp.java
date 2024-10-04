@@ -1,35 +1,25 @@
 package com.xiaoweii.train.member.resp;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class MemberLoginResp {
     private Long id;
 
     private String mobile;
 
-    public Long getId() {
-        return id;
-    }
+    private String token;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getMobile() {
-        return mobile;
-    }
-
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
-    }
-
+    //换一种新的方式生成toString,QAQ,没什么用随便试试
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", mobile=").append(mobile);
-        sb.append("]");
+        final StringBuffer sb = new StringBuffer("MemberLoginResp{");
+        sb.append("id=").append(id);
+        sb.append(", mobile='").append(mobile).append('\'');
+        sb.append(", token='").append(token).append('\'');
+        sb.append('}');
         return sb.toString();
     }
 }

@@ -6,6 +6,7 @@ import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.ObjUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.RandomUtil;
+import cn.hutool.jwt.JWTUtil;
 import com.xiaoweii.train.common.exception.BusinessException;
 import com.xiaoweii.train.common.exception.BusinessExceptionEnum;
 import com.xiaoweii.train.common.util.SnowUtil;
@@ -23,6 +24,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 @Service
@@ -110,10 +112,13 @@ public class MemberService {
             throw new BusinessException(BusinessExceptionEnum.MEMBER_MOBILE_CODE_ERROR);
         }
 
-        //Hutool提供的工具类
-        //参数一:赋值源, 参数二:复制成什么类
-
-        return BeanUtil.copyProperties(memberDB, MemberLoginResp.class);
+        MemberLoginResp memberLoginResp = BeanUtil.copyProperties(memberDB, MemberLoginResp.class);
+        Map<String, Object> map = BeanUtil.beanToMap(memberLoginResp);//参数一:map
+        String key = "Train12306";//密钥key,每个项目都不一样
+        //使用hutool工具类生成token
+        String token = JWTUtil.createToken(map, key.getBytes());
+        memberLoginResp.setToken(token);
+        return memberLoginResp;
     }
 
     private Member selectByMobile(String mobile) {
