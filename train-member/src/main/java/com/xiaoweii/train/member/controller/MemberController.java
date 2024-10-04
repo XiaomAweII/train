@@ -9,10 +9,7 @@ import com.xiaoweii.train.member.resp.MemberLoginResp;
 import com.xiaoweii.train.member.service.MemberService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/member")
@@ -37,7 +34,7 @@ public class MemberController {
     }
 
     @PostMapping("/send-code")
-    public CommonResp<Long> sendCode(@Valid MemberSendCodeReq req) {//@Valid注解相当于一个开关, 加上之后, Validation才会生效
+    public CommonResp<Long> sendCode(@Valid @RequestBody MemberSendCodeReq req) {//添加注解@RequestBody,即接收方式以json字符串的方式接收
         memberService.sendCode(req);
         return new CommonResp<>();
     }
