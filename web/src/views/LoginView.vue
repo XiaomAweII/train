@@ -8,8 +8,6 @@
           :model="loginForm"
           name="basic"
           autocomplete="off"
-          @finish="onFinish"
-          @finishFailed="onFinishFailed"
       >
         <a-form-item
             label=""
@@ -33,7 +31,7 @@
         </a-form-item>
 
         <a-form-item>
-          <a-button type="primary" block @click="submit">登录</a-button>
+          <a-button type="primary" block @click="login">登录</a-button>
         </a-form-item>
 
       </a-form>
@@ -44,6 +42,7 @@
 <script>
 import {defineComponent, reactive} from 'vue';
 import axios from 'axios';
+import {notification} from 'ant-design-vue';
 
 export default defineComponent({
   name: "LoginView",
@@ -53,26 +52,37 @@ export default defineComponent({
       code: '',
     });
 
-    const onFinish = values => {
-      console.log('Success:', values);
-    };
-
-    const onFinishFailed = errorInfo => {
-      console.log('Failed:', errorInfo);
-    };
     const sendCode = () => {
-      //要发送get请求就.get,要发送post请求就.post,要发送delete请求就.delete
       axios.post("http://localhost:8000/member/member/send-code", {
         mobile: loginForm.mobile
-      }).then(res => {
-        console.log(res);
+      }).then(response => {
+        let data = response.data;
+        if (data.success) {
+          notification.success({description: '发送验证码成功！'});
+          loginForm.code = "8888";
+        } else {
+          notification.error({description: data.message});
+        }
       });
     };
+
+    const login = () => {
+      axios.post("http://localhost:8000/member/member/login", loginForm).then((response) => {
+        let data = response.data;
+        if (data.success) {
+          notification.success({description: '登录成功！'});
+          console.log("登录成功: ", data.content);
+        } else {
+          notification.error({description: data.message});
+        }
+      })
+    };
+
+
     return {
       loginForm,
-      onFinish,
-      onFinishFailed,
       sendCode,
+      login
     };
   },
 });
