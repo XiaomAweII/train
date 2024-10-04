@@ -2,8 +2,10 @@ package com.xiaoweii.train.member.controller;
 
 
 import com.xiaoweii.train.common.resp.CommonResp;
+import com.xiaoweii.train.member.req.MemberLoginReq;
 import com.xiaoweii.train.member.req.MemberRegisterReq;
 import com.xiaoweii.train.member.req.MemberSendCodeReq;
+import com.xiaoweii.train.member.resp.MemberLoginResp;
 import com.xiaoweii.train.member.service.MemberService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,5 +40,11 @@ public class MemberController {
     public CommonResp<Long> sendCode(@Valid MemberSendCodeReq req) {//@Valid注解相当于一个开关, 加上之后, Validation才会生效
         memberService.sendCode(req);
         return new CommonResp<>();
+    }
+
+    @PostMapping("/login")
+    public CommonResp<MemberLoginResp> sendCode(@Valid MemberLoginReq req) {
+        MemberLoginResp resp = memberService.login(req);
+        return new CommonResp<>(resp);
     }
 }
