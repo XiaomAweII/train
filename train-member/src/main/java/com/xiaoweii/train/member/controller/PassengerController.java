@@ -34,4 +34,11 @@ public class PassengerController {
         return new CommonResp<>(list);
     }
 
+    @DeleteMapping("/delete/{id}")
+    public CommonResp<Object> delete(@PathVariable Long id) {//使用@PathVariable注解,将id与restful格式的路径{id}关联起来
+        passengerService.delete(id);
+        return new CommonResp<>();
+    }
+
+
 }
