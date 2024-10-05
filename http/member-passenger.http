@@ -27,3 +27,17 @@ token: {{token}}
 
 
 ###
+
+POST http://localhost:8000/member/passenger/save
+Content-Type: application/json
+token: {{token}}
+
+{
+  "id": 1842538626970423296,
+  "memberId": 1842160499727405056,
+  "name": "test2",
+  "idCard": "123321",
+  "type": "1"
+}
+
+###
