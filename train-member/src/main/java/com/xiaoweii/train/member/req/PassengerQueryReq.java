@@ -1,11 +1,12 @@
 package com.xiaoweii.train.member.req;
 
+import com.xiaoweii.train.common.req.PageReq;
 import jakarta.validation.constraints.NotBlank;
 
 import java.util.Date;
 
 //不止可以给新增使用, 也可以给编辑使用, 所以跟Passenger保持一致
-public class PassengerQueryReq {
+public class PassengerQueryReq extends PageReq {
 
 
     //因为使用了线程本地变量获取memberID, 所以memberID就不需要校验了
