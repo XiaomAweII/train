@@ -1,6 +1,8 @@
 <template>
-  <h1>乘车人管理</h1>
-  <a-button type="primary" @click="showModal">新增</a-button>
+  <p>
+    <a-button type="primary" @click="showModal">新增</a-button>
+  </p>
+  <a-table :dataSource="dataSource" :columns="columns"/>
   <a-modal v-model:visible="visible" title="乘车人" @ok="handleOk" ok-text="确认" cancel-text="取消">
     <a-form :model="passenger" :label-col="{span: 4}" :wrapper-col="{ span: 20 }">
       <a-form-item label="姓名">
@@ -40,6 +42,37 @@ export default defineComponent({
       updateTime: undefined
     });
 
+    const dataSource = [{
+      key: '1',
+      name: '孙悟空',
+      age: 31,
+      address: '花果山水帘洞'
+    }, {
+      key: '2',
+      name: '猪八戒',
+      age: 24,
+      address: '高老庄'
+    }, {
+      key: '3',
+      name: '沙悟净',
+      age: 26,
+      address: '流沙河'
+    }];
+
+    const columns = [{
+      title: '姓名',
+      dataIndex: 'name',
+      key: 'name'
+    }, {
+      title: '年龄',
+      dataIndex: 'age',
+      key: 'age'
+    }, {
+      title: '住址',
+      dataIndex: 'address',
+      key: 'address'
+    }]
+
     const showModal = () => {
       visible.value = true;
     };
@@ -61,6 +94,8 @@ export default defineComponent({
       visible,
       showModal,
       handleOk,
+      dataSource,
+      columns,
     };
   },
 });
