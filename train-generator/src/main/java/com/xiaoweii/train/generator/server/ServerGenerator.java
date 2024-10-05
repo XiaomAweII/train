@@ -15,16 +15,26 @@ import java.util.Map;
 
 public class ServerGenerator {
 
-    static String toPath = "train-generator/src/main/java/com/xiaoweii/train/generator/test/";
+    static String servicePath = "[module]/src/main/java/com/xiaoweii/train/[module]/service/";
     static String pomPath = "train-generator/pom.xml";
 
     static {
-        new File(toPath).mkdirs();
+        new File(servicePath).mkdirs();
     }
 
     public static void main(String[] args) throws Exception {
+        //获取mybatis-generator
         String generatorPath = getGeneratorPath();
+        //比如generator-config-member.xml, 得到module = member
+        String module = generatorPath.replace("src/main/resources/generator-config-", "").replace(".xml", "");
+        System.out.println("module: " + module);
 
+        servicePath = servicePath.replace("[module]", module);
+        //new File(servicePath).mkdirs();
+        System.out.println("servicePath: " + servicePath);
+
+
+        //读取table节点
         Document document = new SAXReader().read("train-generator/" + generatorPath);//拼接"train-generator/"模块路径再拼接当前路径
         Node table = document.selectSingleNode("//table");//两个斜杠表示寻找所有的table节点
         System.out.println(table);
@@ -32,11 +42,25 @@ public class ServerGenerator {
         Node domainObjectName = table.selectSingleNode("@domainObjectName");
         System.out.println(tableName.getText() + "/" + domainObjectName.getText());
 
+        // 示例: 表名 xxx_test
+        // Domain = XxxTest
+        String Domain = domainObjectName.getText();
+        // domain = xxxTest
+        String domain = Domain.substring(0, 1).toUpperCase() + Domain.substring(1);
+        // do_main = xxx-test //url命名规范: 全小写, 多个单词用 - 拼接
+        String do_main = tableName.getText().replaceAll("_", "-");
 
-//        FreemarkerUtil.initConfig("test.ftl");
+        //组装参数
+        Map<String, Object> param = new HashMap<>();
+        param.put("Domain", Domain);
+        param.put("domain", domain);
+        param.put("do_main", do_main);
+        System.out.println("组装参数: " + param);
+
+        FreemarkerUtil.initConfig("service.ftl");
 //        HashMap<String, Object> param = new HashMap<>();
 //        param.put("domain", "Test");
-//        FreemarkerUtil.generator(toPath + "Test.java", param);
+        FreemarkerUtil.generator("train-"+servicePath + Domain + "Service.java", param);
     }
 
     private static String getGeneratorPath() throws DocumentException {
