@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/member")
 public class MemberController {
 
-    //    @Resource
+    //@Resource
     @Autowired
     private MemberService memberService;
 
