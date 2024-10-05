@@ -1,8 +1,7 @@
 <template>
   <a-layout-sider width="200" style="background: #fff">
     <a-menu
-        v-model:selectedKeys="selectedKeys2"
-        v-model:openKeys="openKeys"
+        v-model:selectedKeys="selectedKeys"
         mode="inline"
         :style="{height: '100%',borderRight: 0}"
     >
@@ -21,15 +20,22 @@
 </template>
 
 <script>
-import {defineComponent, ref} from 'vue';
+import {defineComponent, ref, watch} from 'vue';
+import router from '@/router';
 
 export default defineComponent({
   name: "SiderComponent",
   setup() {
+    const selectedKeys = ref([]);
+
+    watch(() => router.currentRoute.value.path, (newValue) => {
+      console.log('watch: ', newValue);
+      selectedKeys.value = [];//每次有路由变化都需要清空
+      selectedKeys.value.push(newValue);
+    }), {immediate: true};
 
     return {
-      selectedKeys2: ref(['1']),
-      openKeys: ref(['sub1']),
+      selectedKeys,
     };
   },
 });
