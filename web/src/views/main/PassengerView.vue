@@ -51,9 +51,10 @@ import {defineComponent, ref, onMounted} from 'vue';
 import {notification} from "ant-design-vue";
 import axios from "axios";
 
+
 export default defineComponent({
   setup() {
-    const PASSENGER_TYPE_ARRAY = [{key: "1", value: "成人"}, {key: "2", value: "儿童"}, {key: "3", value: "学生"}];
+    const PASSENGER_TYPE_ARRAY = window.PASSENGER_TYPE_ARRAY;
     const visible = ref(false);
 
     //跟表中的字段保持一致
