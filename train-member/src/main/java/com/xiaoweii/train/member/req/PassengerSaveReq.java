@@ -9,7 +9,7 @@ import java.util.Date;
 public class PassengerSaveReq {
     private Long id;
 
-    @NotNull(message = "【会员ID】 不能为空")
+    //因为使用了线程本地变量获取memberID, 所以memberID就不需要校验了
     private Long memberId;
 
     @NotBlank(message = "【名字】 不能为空")
