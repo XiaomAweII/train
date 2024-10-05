@@ -90,6 +90,13 @@
 				<version>1.18.26</version>
 			</dependency>
 
+			<!--mybatis分页依赖-->
+			<dependency>
+				<groupId>com.github.pagehelper</groupId>
+				<artifactId>pagehelper-spring-boot-starter</artifactId>
+				<version>1.4.7</version>
+			</dependency>
+
 		</dependencies>
 	</dependencyManagement>
 
