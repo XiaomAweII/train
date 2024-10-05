@@ -12,7 +12,15 @@ const routes = [
         component: () => import('../views/MainView.vue'),
         meta: {//元数据,相当于自定义变量
             loginRequire: true//可以是任何变量,只是起个名字
-        }
+        },
+        children: [{
+            path: 'welcome',
+            component: () => import('../views/main/WelcomeView.vue'),
+        }]
+    },
+    {
+        path: '',
+        redirect: '/welcome'
     }
 ]
 
