@@ -1,6 +1,10 @@
 <template>
   <a-layout-header class="header">
-    <div class="logo"/>
+    <div class="logo">
+      <router-link to="/welcome" style="color: white;font-size: 18px">
+        12306
+      </router-link>
+    </div>
     <div style="float: right;color: white;">
       您好: {{ member.mobile }} &nbsp;&nbsp;
       <!-- 使用router-link标签+to来跳转页面, 相当于a标签+href-->
@@ -59,5 +63,11 @@ export default defineComponent({
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <!--scoped的意思是这个css样式只在当前页面生效, 不使用的话就.body{}-->
 <style scoped>
-
+.logo{
+  float: left;
+  height: 31px;
+  width: 150px;
+  color: white;
+  font-size: 20px;
+}
 </style>

@@ -1,8 +1,12 @@
 <template>
   <a-layout-header class="header">
-    <div class="logo"/>
+    <div class="logo">
+      <router-link to="/welcome" style="color: white;font-size: 18px">
+        12306 控台
+      </router-link>
+    </div>
     <div style="float: right;color: white;">
-      欢迎使用登录控台
+      欢迎使用管理控台
     </div>
     <a-menu
         v-model:selectedKeys="selectedKeys"
@@ -49,5 +53,11 @@ export default defineComponent({
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <!--scoped的意思是这个css样式只在当前页面生效, 不使用的话就.body{}-->
 <style scoped>
-
+.logo{
+  float: left;
+  height: 31px;
+  width: 150px;
+  color: white;
+  font-size: 20px;
+}
 </style>
