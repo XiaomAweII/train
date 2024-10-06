@@ -26,6 +26,7 @@
 		<module>train-common</module>
 		<module>train-gateway</module>
         <module>train-generator</module>
+        <module>train-business</module>
     </modules>
 	<scm>
 		<connection/>
