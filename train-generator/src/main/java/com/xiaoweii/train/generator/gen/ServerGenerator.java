@@ -1,4 +1,4 @@
-package com.xiaoweii.train.generator.server;
+package com.xiaoweii.train.generator.gen;
 
 
 import com.xiaoweii.train.generator.util.DbUtil;
