@@ -15,7 +15,8 @@ import java.io.IOException;
 import java.util.*;
 
 public class ServerGenerator {
-
+    static boolean readOnly = false;
+    static String vuePath = "web/src/views/main/";
     static String serverPath = "[module]/src/main/java/com/xiaoweii/train/[module]/";
     static String pomPath = "train-generator/pom.xml";
 
@@ -59,7 +60,7 @@ public class ServerGenerator {
         // Domain = XxxTest
         String Domain = domainObjectName.getText();
         // domain = xxxTest
-        String domain = Domain.substring(0, 1).toUpperCase() + Domain.substring(1);
+        String domain = Domain.substring(0, 1).toLowerCase() + Domain.substring(1);
         // do_main = xxx-test //url命名规范: 全小写, 多个单词用 - 拼接
         String do_main = tableName.getText().replaceAll("_", "-");
         // 表中文名
@@ -77,13 +78,16 @@ public class ServerGenerator {
         param.put("tableNameCn", tableNameCn);
         param.put("fieldList", fieldList);
         param.put("typeSet", typeSet);
+        param.put("readOnly", readOnly);
         System.out.println("组装参数: " + param);
 
 //        gen(Domain, param, "service", "service");
 //        gen(Domain, param, "controller", "controller");
 //        gen(Domain, param, "req", "saveReq");
-        gen(Domain, param, "req", "queryReq");
-        gen(Domain, param, "resp", "queryResp");
+//        gen(Domain, param, "req", "queryReq");
+//        gen(Domain, param, "resp", "queryResp");
+
+        genVue(Domain, param);
 
     }
 
@@ -93,6 +97,14 @@ public class ServerGenerator {
         new File(toPath).mkdirs();
         String Target = target.substring(0, 1).toUpperCase() + target.substring(1);
         String fileName = "train-" + toPath + Domain + Target + ".java";
+        System.out.println("开始生成: " + fileName);
+        FreemarkerUtil.generator(fileName, param);
+    }
+
+    private static void genVue(String Domain, Map<String, Object> param) throws IOException, TemplateException {
+        FreemarkerUtil.initConfig("vue.ftl");
+        new File(vuePath).mkdirs();
+        String fileName = vuePath + Domain + "View.vue";
         System.out.println("开始生成: " + fileName);
         FreemarkerUtil.generator(fileName, param);
     }
