@@ -1,4 +1,4 @@
-package com.xiaoweii.train.member.service;
+package com.xiaoweii.train.${module}.service;
 
 
 import cn.hutool.core.bean.BeanUtil;
@@ -10,12 +10,12 @@ import com.github.pagehelper.PageInfo;
 import com.xiaoweii.train.common.context.LoginMemberContext;
 import com.xiaoweii.train.common.resp.PageResp;
 import com.xiaoweii.train.common.util.SnowUtil;
-import com.xiaoweii.train.member.domain.${Domain};
-import com.xiaoweii.train.member.domain.${Domain}Example;
-import com.xiaoweii.train.member.mapper.${Domain}Mapper;
-import com.xiaoweii.train.member.req.${Domain}QueryReq;
-import com.xiaoweii.train.member.req.${Domain}SaveReq;
-import com.xiaoweii.train.member.resp.${Domain}QueryResp;
+import com.xiaoweii.train.${module}.domain.${Domain};
+import com.xiaoweii.train.${module}.domain.${Domain}Example;
+import com.xiaoweii.train.${module}.mapper.${Domain}Mapper;
+import com.xiaoweii.train.${module}.req.${Domain}QueryReq;
+import com.xiaoweii.train.${module}.req.${Domain}SaveReq;
+import com.xiaoweii.train.${module}.resp.${Domain}QueryResp;
 import jakarta.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

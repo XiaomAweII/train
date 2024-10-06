@@ -1,4 +1,4 @@
-package com.xiaoweii.train.member.req;
+package com.xiaoweii.train.${module}.req;
 
 <#list typeSet as type>
 <#if type=='Date'>
