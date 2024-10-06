@@ -21,7 +21,7 @@ public class ServerGenerator {
     static String pomPath = "train-generator/pom.xml";
 
     static {
-        new File(serverPath).mkdirs();
+//        new File(serverPath).mkdirs();
     }
 
     public static void main(String[] args) throws Exception {
@@ -82,7 +82,7 @@ public class ServerGenerator {
         System.out.println("组装参数: " + param);
 
         gen(Domain, param, "service", "service");
-        gen(Domain, param, "controller", "controller");
+        gen(Domain, param, "controller/admin", "adminController");
         gen(Domain, param, "req", "saveReq");
         gen(Domain, param, "req", "queryReq");
         gen(Domain, param, "resp", "queryResp");
@@ -94,7 +94,7 @@ public class ServerGenerator {
     private static void gen(String Domain, Map<String, Object> param, String packageName, String target) throws IOException, TemplateException {
         FreemarkerUtil.initConfig(target + ".ftl");
         String toPath = serverPath + packageName + "/";
-        new File(toPath).mkdirs();
+        new File("train-"+toPath).mkdirs();
         String Target = target.substring(0, 1).toUpperCase() + target.substring(1);
         String fileName = "train-" + toPath + Domain + Target + ".java";
         System.out.println("开始生成: " + fileName);

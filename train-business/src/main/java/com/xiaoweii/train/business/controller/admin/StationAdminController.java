@@ -1,4 +1,4 @@
-package com.xiaoweii.train.business.controller;
+package com.xiaoweii.train.business.controller.admin;
 
 
 import com.xiaoweii.train.common.context.LoginMemberContext;
@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/station")
-public class StationController {
+@RequestMapping("/admin/station")
+public class StationAdminController {
 
     @Resource
     private StationService stationService;

@@ -1,4 +1,4 @@
-package com.xiaoweii.train.${module}.controller;
+package com.xiaoweii.train.${module}.controller.admin;
 
 
 import com.xiaoweii.train.common.context.LoginMemberContext;
@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/${do_main}")
-public class ${Domain}Controller {
+@RequestMapping("/admin/${do_main}")
+public class ${Domain}AdminController {
 
     @Resource
     private ${Domain}Service ${domain}Service;
