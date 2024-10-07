@@ -2,6 +2,7 @@ package com.xiaoweii.train.generator.gen;
 
 
 import cn.hutool.core.util.StrUtil;
+import com.xiaoweii.train.business.enums.SeatColEnum;
 import com.xiaoweii.train.business.enums.SeatTypeEnum;
 import com.xiaoweii.train.business.enums.TrainTypeEnum;
 import com.xiaoweii.train.member.enums.PassengerTypeEnum;
@@ -11,7 +12,7 @@ import java.io.OutputStreamWriter;
 import java.lang.reflect.Method;
 
 public class EnumGenerator {
-     static String path = "admin/src/assets/js/enums.js";
+    static String path = "admin/src/assets/js/enums.js";
 
 
     public static void main(String[] args) {
@@ -22,6 +23,7 @@ public class EnumGenerator {
             toJson(PassengerTypeEnum.class, bufferObject, bufferArray);
             toJson(TrainTypeEnum.class, bufferObject, bufferArray);
             toJson(SeatTypeEnum.class, bufferObject, bufferArray);
+            toJson(SeatColEnum.class, bufferObject, bufferArray);
 
             StringBuffer buffer = bufferObject.append("\r\n").append(bufferArray);
             writeJs(buffer);
@@ -38,8 +40,8 @@ public class EnumGenerator {
                 .toUpperCase().replace("_ENUM", "");
         Object[] objects = clazz.getEnumConstants();
         Method name = clazz.getMethod("name");
-        Method getDesc=clazz.getMethod("getDesc");
-        Method getCode=clazz.getMethod("getCode");
+        Method getDesc = clazz.getMethod("getDesc");
+        Method getCode = clazz.getMethod("getCode");
 
 
         // 生成对象
@@ -68,6 +70,7 @@ public class EnumGenerator {
 
     /**
      * 写文件
+     *
      * @param stringBuffer
      */
     public static void writeJs(StringBuffer stringBuffer) {
@@ -80,8 +83,7 @@ public class EnumGenerator {
             osw.close();
         } catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             try {
                 out.close();
             } catch (Exception e) {
