@@ -217,11 +217,24 @@ export default defineComponent({
       });
     };
 
+    const queryTrainCode = () => {
+      axios.get("/business/admin/train/query-all").then((response) => {
+        let data = response.data;
+        if (data.success) {
+          console.log(data.content);//目前没有做任何操作, 只是打印出来, 后续也是将功能拆解成一个一个小的步骤, 逐步实现
+        } else {
+          notification.error({description: data.message});
+        }
+      });
+    };
+
     onMounted(() => {
       handleQuery({
         page: 1,
         size: pagination.value.pageSize
       });
+
+      queryTrainCode();
     });
 
     return {
