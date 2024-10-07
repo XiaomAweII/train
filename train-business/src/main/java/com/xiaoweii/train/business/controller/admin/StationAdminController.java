@@ -1,6 +1,7 @@
 package com.xiaoweii.train.business.controller.admin;
 
 
+import com.xiaoweii.train.business.resp.TrainQueryResp;
 import com.xiaoweii.train.common.resp.CommonResp;
 import com.xiaoweii.train.common.resp.PageResp;
 import com.xiaoweii.train.business.req.StationQueryReq;
@@ -36,6 +37,12 @@ public class StationAdminController {
     public CommonResp<Object> delete(@PathVariable Long id) {//使用@PathVariable注解,将id与restful格式的路径{id}关联起来
         stationService.delete(id);
         return new CommonResp<>();
+    }
+
+    @GetMapping("/query-all")
+    public CommonResp<List<StationQueryResp>> queryList() {//@Valid注解相当于一个开关, 加上之后, Validation才会生效
+        List<StationQueryResp> list = stationService.queryAll();
+        return new CommonResp<>(list);
     }
 
 

@@ -4,9 +4,9 @@ package com.xiaoweii.train.business.service;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.date.DateTime;
 import cn.hutool.core.util.ObjectUtil;
-import cn.hutool.core.util.StrUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.xiaoweii.train.business.mapper.TrainMapper;
 import com.xiaoweii.train.common.resp.PageResp;
 import com.xiaoweii.train.common.util.SnowUtil;
 import com.xiaoweii.train.business.domain.Station;
@@ -18,6 +18,7 @@ import com.xiaoweii.train.business.resp.StationQueryResp;
 import jakarta.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -30,6 +31,8 @@ public class StationService {
 
     @Resource
     private StationMapper stationMapper;
+    @Autowired
+    private TrainMapper trainMapper;
 
     //后续界面操作时, 保存后, 界面会刷新列表, 不需要返回保存成功后的数据
     public void save(StationSaveReq req) {
@@ -73,5 +76,12 @@ public class StationService {
     public void delete(Long id) {
         stationMapper.deleteByPrimaryKey(id);
     }
-	
+
+    public List<StationQueryResp> queryAll() {
+        StationExample stationExample = new StationExample();
+        stationExample.setOrderByClause("name_pinyin asc");
+        List<Station> stationList = stationMapper.selectByExample(stationExample);
+        return BeanUtil.copyToList(stationList, StationQueryResp.class);
+    }
+
 }
