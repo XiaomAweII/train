@@ -28,7 +28,7 @@
            ok-text="确认" cancel-text="取消">
     <a-form :model="trainStation" :label-col="{span: 4}" :wrapper-col="{ span: 20 }">
       <a-form-item label="车次编号">
-        <TrainSelectComponent v-model="trainStation.trainCode" width="50%"></TrainSelectComponent>
+        <TrainSelectComponent v-model="trainStation.trainCode"></TrainSelectComponent>
       </a-form-item>
       <a-form-item label="站序">
         <a-input v-model:value="trainStation.index"/>
@@ -219,42 +219,11 @@ export default defineComponent({
       });
     };
 
-    // --------------- 车次下拉框 ---------------
-    const trains = ref([]);
-
-    /*
-    * 查询所有的车次, 用于车次下拉框
-    * */
-    const queryTrainCode = () => {
-      axios.get("/business/admin/train/query-all").then((response) => {
-        let data = response.data;
-        if (data.success) {
-          console.log(data.content);//目前没有做任何操作, 只是打印出来, 后续也是将功能拆解成一个一个小的步骤, 逐步实现
-          trains.value = data.content;
-        } else {
-          notification.error({description: data.message});
-        }
-      });
-    };
-
-    /*
-    * 车次下拉框筛选
-    * */
-    const filterTrainCodeOption = (input, option) => {
-      console.log(input, option);
-      /*
-      * 官方的示例是按value来过滤, 这个系统是按多个字段来搜索, 即能按车次, 也能按起始终点站, 所以扩展出label属性
-      * */
-      return option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0;
-    }
-
     onMounted(() => {
       handleQuery({
         page: 1,
         size: pagination.value.pageSize
       });
-
-      queryTrainCode();
     });
 
     return {
