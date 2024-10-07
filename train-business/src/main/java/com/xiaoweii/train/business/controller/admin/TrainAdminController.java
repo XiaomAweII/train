@@ -39,5 +39,11 @@ public class TrainAdminController {
         return new CommonResp<>();
     }
 
+    @GetMapping("/query-all")
+    public CommonResp<List<TrainQueryResp>> queryList() {//@Valid注解相当于一个开关, 加上之后, Validation才会生效
+        List<TrainQueryResp> list = trainService.queryAll();
+        return new CommonResp<>(list);
+    }
+
 
 }
