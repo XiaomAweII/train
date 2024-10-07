@@ -49,8 +49,11 @@ public class TrainStationService {
     //做成通用的
     public PageResp<TrainStationQueryResp> queryList(TrainStationQueryReq req) {
         TrainStationExample trainStationExample = new TrainStationExample();
-        trainStationExample.setOrderByClause("id desc");//根据id倒序, 目的是为了让最新添加的乘客显示在最前面
+        trainStationExample.setOrderByClause("train_code asc, `index` asc");
         TrainStationExample.Criteria criteria = trainStationExample.createCriteria();
+        if (ObjectUtil.isNotNull(req.getTrainCode())) {
+            criteria.andTrainCodeEqualTo(req.getTrainCode());
+        }
 
         LOG.info("查询页码: {}", req.getPage());
         LOG.info("每页条数: {}", req.getSize());
@@ -73,5 +76,5 @@ public class TrainStationService {
     public void delete(Long id) {
         trainStationMapper.deleteByPrimaryKey(id);
     }
-	
+
 }
