@@ -7,6 +7,7 @@ import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.xiaoweii.train.business.domain.TrainSeatExample;
 import com.xiaoweii.train.common.resp.PageResp;
 import com.xiaoweii.train.common.util.SnowUtil;
 import com.xiaoweii.train.business.domain.TrainCarriage;
@@ -76,5 +77,14 @@ public class TrainCarriageService {
     public void delete(Long id) {
         trainCarriageMapper.deleteByPrimaryKey(id);
     }
-	
+
+    public List<TrainCarriage> selectByTrainCode(String trainCode) {
+        TrainCarriageExample trainCarriageExample = new TrainCarriageExample();
+        trainCarriageExample.setOrderByClause("`index` asc");
+        TrainCarriageExample.Criteria criteria = trainCarriageExample.createCriteria();
+        criteria.andTrainCodeEqualTo(trainCode);
+        return trainCarriageMapper.selectByExample(trainCarriageExample);
+
+    }
+
 }

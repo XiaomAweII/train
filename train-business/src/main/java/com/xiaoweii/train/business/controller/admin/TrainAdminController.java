@@ -1,6 +1,7 @@
 package com.xiaoweii.train.business.controller.admin;
 
 
+import com.xiaoweii.train.business.service.TrainSeatService;
 import com.xiaoweii.train.common.context.LoginMemberContext;
 import com.xiaoweii.train.common.resp.CommonResp;
 import com.xiaoweii.train.common.resp.PageResp;
@@ -20,6 +21,9 @@ public class TrainAdminController {
 
     @Resource
     private TrainService trainService;
+
+    @Resource
+    private TrainSeatService trainSeatService;
 
     @PostMapping("/save")
     public CommonResp<Object> register(@Valid @RequestBody TrainSaveReq req) {//@Valid注解相当于一个开关, 加上之后, Validation才会生效
@@ -43,6 +47,12 @@ public class TrainAdminController {
     public CommonResp<List<TrainQueryResp>> queryList() {//@Valid注解相当于一个开关, 加上之后, Validation才会生效
         List<TrainQueryResp> list = trainService.queryAll();
         return new CommonResp<>(list);
+    }
+
+    @GetMapping("/gen-seat/{trainCode}")
+    public CommonResp<Object> genSeat(@PathVariable String trainCode) {
+        trainSeatService.genTrainSeat(trainCode);
+        return new CommonResp<>();
     }
 
 
