@@ -15,15 +15,15 @@
       </template>
       <template v-else-if="column.dataIndex === 'col'">
         <span v-for="item in SEAT_COL_ARRAY" :key="item.code">
-          <span v-if="item.code === record.col">
-            {{item.desc}}
+          <span v-if="item.code === record.col && item.type===record.seatType">
+            {{ item.desc }}
           </span>
         </span>
       </template>
       <template v-else-if="column.dataIndex === 'seatType'">
         <span v-for="item in SEAT_TYPE_ARRAY" :key="item.code">
           <span v-if="item.code === record.seatType">
-            {{item.desc}}
+            {{ item.desc }}
           </span>
         </span>
       </template>
@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import { defineComponent, ref, onMounted } from 'vue';
+import {defineComponent, ref, onMounted} from 'vue';
 import {notification} from "ant-design-vue";
 import axios from "axios";
 import TrainSelectComponent from "@/components/TrainSelectComponent.vue";
@@ -63,42 +63,41 @@ export default defineComponent({
       pageSize: 10,
     });
     let loading = ref(false);
-    let params=ref({
+    let params = ref({
       trainCode: null
     });
     const columns = [
-    {
-      title: '车次编号',
-      dataIndex: 'trainCode',
-      key: 'trainCode',
-    },
-    {
-      title: '厢序',
-      dataIndex: 'carriageIndex',
-      key: 'carriageIndex',
-    },
-    {
-      title: '排号',
-      dataIndex: 'row',
-      key: 'row',
-    },
-    {
-      title: '列号',
-      dataIndex: 'col',
-      key: 'col',
-    },
-    {
-      title: '座位类型',
-      dataIndex: 'seatType',
-      key: 'seatType',
-    },
-    {
-      title: '同车厢座序',
-      dataIndex: 'carriageSeatIndex',
-      key: 'carriageSeatIndex',
-    },
+      {
+        title: '车次编号',
+        dataIndex: 'trainCode',
+        key: 'trainCode',
+      },
+      {
+        title: '厢序',
+        dataIndex: 'carriageIndex',
+        key: 'carriageIndex',
+      },
+      {
+        title: '排号',
+        dataIndex: 'row',
+        key: 'row',
+      },
+      {
+        title: '列号',
+        dataIndex: 'col',
+        key: 'col',
+      },
+      {
+        title: '座位类型',
+        dataIndex: 'seatType',
+        key: 'seatType',
+      },
+      {
+        title: '同车厢座序',
+        dataIndex: 'carriageSeatIndex',
+        key: 'carriageSeatIndex',
+      },
     ];
-
 
 
     const handleQuery = (param) => {
