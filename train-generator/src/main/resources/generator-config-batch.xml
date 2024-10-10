@@ -23,28 +23,27 @@
 
         <!-- 配置数据源，需要根据自己的项目修改 -->
         <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
-                        connectionURL="jdbc:mysql://rm-bp1s948j00wp91609xo.rwlb.rds.aliyuncs.com/train_member?serverTimezone=Asia/Shanghai"
-                        userId="train_member"
-                        password="Member123">
+                        connectionURL="jdbc:mysql://rm-bp1s948j00wp91609xo.rwlb.rds.aliyuncs.com/train_batch?serverTimezone=Asia/Shanghai"
+                        userId="train_batch"
+                        password="Batch123">
         </jdbcConnection>
 
         <!-- domain类的位置 targetProject是相对pom.xml的路径-->
-        <javaModelGenerator targetProject="../train-member/src/main/java"
-                            targetPackage="com.xiaoweii.train.member.domain"/>
+        <javaModelGenerator targetProject="../train-batch/src/main/java"
+                            targetPackage="com.xiaoweii.train.batch.domain"/>
 
         <!-- mapper xml的位置 targetProject是相对pom.xml的路径 -->
-        <sqlMapGenerator targetProject="../train-member/src/main/resources"
+        <sqlMapGenerator targetProject="../train-batch/src/main/resources"
                          targetPackage="mapper"/>
 
 
         <!--所有sql全部放到xml当中,java代码就是纯粹java代码-->
         <!-- mapper类的位置 targetProject是相对pom.xml的路径 -->
-        <javaClientGenerator targetProject="../train-member/src/main/java"
-                             targetPackage="com.xiaoweii.train.member.mapper"
+        <javaClientGenerator targetProject="../train-batch/src/main/java"
+                             targetPackage="com.xiaoweii.train.batch.mapper"
                              type="XMLMAPPER"/>
 
-<!--        <table tableName="member" domainObjectName="Member"/>-->
-        <table tableName="passenger" domainObjectName="Passenger"/>
-        <!--<table tableName="ticket" domainObjectName="Ticket"/>-->
+                <table tableName="member" domainObjectName="Member"/>
+
     </context>
 </generatorConfiguration>
