@@ -25,6 +25,11 @@ const routes = [
         },{
             path: 'train-seat',
             component: () => import('../views/main/TrainSeatView.vue'),
+        },{
+            // 注意和其他路由的区别, 这是为了以后, 是可以写多级路由的
+            path: 'batch/job',
+            name: 'batch/job',
+            component: () => import('../views/main/JobView.vue'),
         }]
     },
     {

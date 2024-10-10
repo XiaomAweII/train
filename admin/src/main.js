@@ -6,6 +6,7 @@ import Antd from 'ant-design-vue'
 import * as Icons from '@ant-design/icons-vue'
 import axios from 'axios'
 import './assets/js/enums';
+import 'ant-design-vue/dist/reset.css';
 
 
 const app = createApp(App)
