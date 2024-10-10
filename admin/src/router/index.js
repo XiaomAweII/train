@@ -15,22 +15,22 @@ const routes = [
             children: [
                 {
                     path: 'station',
-                    component: () => import('../views/main/StationView.vue'),
+                    component: () => import('../views/main/base/StationView.vue'),
                 },
                 {
                     path: 'train',
-                    component: () => import('../views/main/TrainView.vue'),
+                    component: () => import('../views/main/base/TrainView.vue'),
                 },
                 {
                     path: 'train-station',
-                    component: () => import('../views/main/TrainStationView.vue'),
+                    component: () => import('../views/main/base/TrainStationView.vue'),
                 },
                 {
                     path: 'train-carriage',
-                    component: () => import('../views/main/TrainCarriageView.vue'),
+                    component: () => import('../views/main/base/TrainCarriageView.vue'),
                 }, {
                     path: 'train-seat',
-                    component: () => import('../views/main/TrainSeatView.vue'),
+                    component: () => import('../views/main/base/TrainSeatView.vue'),
                 }
             ]
         }, {
@@ -38,7 +38,7 @@ const routes = [
             path: 'batch/',
             children: [{
                 path: 'job',
-                component: () => import('../views/main/JobView.vue'),
+                component: () => import('../views/main/batch/JobView.vue'),
             }]
         }]
     },
