@@ -23,7 +23,12 @@
         <dependency>
             <groupId>com.xiaoweii</groupId>
             <artifactId>train-common</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <!--集成定时调度模块quartz-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-quartz</artifactId>
         </dependency>
 
         <dependency>
