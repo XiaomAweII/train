@@ -6,16 +6,16 @@ import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 
 @DisallowConcurrentExecution//开启注解禁用并发执行, 用于测试调度任务的并发执行, 对比前后日志输出
-public class TestJob implements Job {
+public class Test2Job implements Job {
 
     @Override
     public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
-        System.out.println("TestJob TEST开始");
+        System.out.println("TestJob2222 TEST开始");
 //        try {
 //            Thread.sleep(3000);
 //        } catch (InterruptedException e) {
 //            throw new RuntimeException(e);
 //        }
-        System.out.println("TestJob TEST结束");
+        System.out.println("TestJob2222 TEST结束");
     }
 }
