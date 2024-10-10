@@ -33,7 +33,7 @@ public class JobController {
         String jobClassName = cronJobReq.getName();
         String jobGroupName = cronJobReq.getGroup();
         LOG.info("手动执行任务开始：{}, {}", jobClassName, jobGroupName);
-        schedulerFactoryBean.getScheduler().triggerJob(JobKey.jobKey(jobClassName, jobGroupName));
+        schedulerFactoryBean.getScheduler().triggerJob(JobKey.jobKey(jobClassName, jobGroupName));//这个triggerJob自带的这个方法即可实现立即执行
         return new CommonResp<>();
     }
 
