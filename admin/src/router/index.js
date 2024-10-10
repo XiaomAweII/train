@@ -7,29 +7,39 @@ const routes = [
         children: [{
             path: 'welcome',
             component: () => import('../views/main/WelcomeView.vue'),
-        },{
+        }, {
             path: 'about',
             component: () => import('../views/main/AboutView.vue'),
-        },{
-            path: 'station',
-            component: () => import('../views/main/StationView.vue'),
-        },{
-            path: 'train',
-            component: () => import('../views/main/TrainView.vue'),
-        },{
-            path: 'train-station',
-            component: () => import('../views/main/TrainStationView.vue'),
-        },{
-            path: 'train-carriage',
-            component: () => import('../views/main/TrainCarriageView.vue'),
-        },{
-            path: 'train-seat',
-            component: () => import('../views/main/TrainSeatView.vue'),
-        },{
+        }, {
+            path: 'base/',
+            children: [
+                {
+                    path: 'station',
+                    component: () => import('../views/main/StationView.vue'),
+                },
+                {
+                    path: 'train',
+                    component: () => import('../views/main/TrainView.vue'),
+                },
+                {
+                    path: 'train-station',
+                    component: () => import('../views/main/TrainStationView.vue'),
+                },
+                {
+                    path: 'train-carriage',
+                    component: () => import('../views/main/TrainCarriageView.vue'),
+                }, {
+                    path: 'train-seat',
+                    component: () => import('../views/main/TrainSeatView.vue'),
+                }
+            ]
+        }, {
             // 注意和其他路由的区别, 这是为了以后, 是可以写多级路由的
-            path: 'batch/job',
-            name: 'batch/job',
-            component: () => import('../views/main/JobView.vue'),
+            path: 'batch/',
+            children: [{
+                path: 'job',
+                component: () => import('../views/main/JobView.vue'),
+            }]
         }]
     },
     {
